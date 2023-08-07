@@ -1,4 +1,4 @@
-.animalCollection{
+.soundboard{
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -12,4 +12,9 @@
 .Animal{
   height: 10rem;
   color: pink;
+}
+
+.playing{
+  height: 10rem;
+  color: green;
 }
