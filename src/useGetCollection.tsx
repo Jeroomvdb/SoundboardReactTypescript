@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"; // Add this import statement
 import axios from "axios";
 
-export default function useGetCollection(url) {
+export default function useGetCollection(url: string) {
   const [loading, setIsLoading] = useState(true);
   const [fetchedData, setFetchedData] = useState([]);
 

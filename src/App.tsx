@@ -4,7 +4,7 @@ import axios from "axios";
 
 // IMPORT ICONS FONTAWESOME
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCat } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition, faCat } from "@fortawesome/free-solid-svg-icons";
 import { faDog } from "@fortawesome/free-solid-svg-icons";
 import { faFrog } from "@fortawesome/free-solid-svg-icons";
 import { faDragon } from "@fortawesome/free-solid-svg-icons";
@@ -17,24 +17,11 @@ import { faCrow } from "@fortawesome/free-solid-svg-icons";
 import useGetCollection from "./useGetCollection";
 
 
-// busy with Item interface on soundboardItem function
-interface Item{
-  id: number;
-  name: string;
-  quote: any;
-  icon: string;
-  sound: string;
-  soundboardId: string;
-}
-
-interface SoundboardProps{
-  id: number;
-  name: string;
-}
 
 axios.defaults.baseURL = "http://localhost:4000";
 
-const imageMap = {
+
+const imageMap : {[index:string] : IconDefinition} = {
   faCat: faCat,
   faDog: faDog,
   faFrog: faFrog,
@@ -45,7 +32,7 @@ const imageMap = {
   faCrow: faCrow,
 };
 
-async function addItem(selectedAnimal) {
+async function addItem(selectedAnimal: string) {
   return axios.post(`/items`, {
     name: selectedAnimal,
     quote: `What does the  ${selectedAnimal} say`,
@@ -55,20 +42,34 @@ async function addItem(selectedAnimal) {
   });
 }
 
-function Soundboard({ soundboardData } : {soundboardData: SoundboardProps}) {
-  const [quote, setQuote] = useState(null);
+interface Item{
+  id: string;
+  name: string;
+  quote: string;
+  icon: string;
+  sound: string;
+  soundboardId: string;
+}
+
+interface SoundboardProps{
+  id: string;
+  name: string;
+}
+
+function Soundboard( {id, name }:SoundboardProps) {
+  const [quote, setQuote] = useState<string>("");
 
   const {
     loading,
     data: soundboardItems,
     refetch,
-  } = useGetCollection(`/soundboards/${soundboardData.id}/items`);
+  } = useGetCollection(`/soundboards/${id}/items`);
 
   // if (!soundboardItems || soundboardItems.length === 0) {
   //   alert("no data to fill soundboard");
   // }
 
-  const handleAddItemClick = async (event) => {
+  const handleAddItemClick = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (selectedAnimal) {
@@ -79,22 +80,22 @@ function Soundboard({ soundboardData } : {soundboardData: SoundboardProps}) {
 
   const [selectedAnimal, setSelectedAnimal] = useState("");
 
-  const handleAnimalChange = (event) => {
+  const handleAnimalChange = (event: any) => {
     setSelectedAnimal(event.target.value);
   };
 
   return (
     <>
-      <h1>{soundboardData.name}</h1>
+      <h1>{name}</h1>
       <div className="soundboard">
-        {soundboardItems.map((item) => (
+        {soundboardItems.map((item: Item) => (
           <SoundboardItem
             item={item}
             key={item.id}
-            onSoundStart={() => {
-              setQuote(item.quote);
+            onSoundStart={(quote:string) => {
+              setQuote(quote);
             }}
-            onSoundStop={() => setQuote(null)}
+            onSoundStop={() => setQuote("")}
           />
         ))}
         {quote && <p>{quote}</p>}
@@ -117,7 +118,15 @@ function Soundboard({ soundboardData } : {soundboardData: SoundboardProps}) {
   );
 }
 
-function SoundboardItem({ item, onSoundStart, onSoundStop } : {item: Item;}) {
+interface SoundboardItemProps{
+  item: Item;
+  onSoundStart:(quote: string) => void;
+  onSoundStop: () => void;
+}
+
+
+
+function SoundboardItem({ item, onSoundStart, onSoundStop } : SoundboardItemProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audio = new Audio(item.sound);
 
@@ -134,6 +143,7 @@ function SoundboardItem({ item, onSoundStart, onSoundStop } : {item: Item;}) {
     }
   }
 
+
   return (
     <div className={`Animal ${isPlaying ? "playing" : ""}`} onClick={playSound}>
       <FontAwesomeIcon
@@ -146,7 +156,7 @@ function SoundboardItem({ item, onSoundStart, onSoundStop } : {item: Item;}) {
 
 function App() {
   const [loading, setIsLoading] = useState(true);
-  const [soundboards, setSoundboards] = useState();
+  const [soundboards, setSoundboards] = useState<SoundboardProps[]>([]);
 
   useEffect(() => {
     async function getSoundboard() {
@@ -169,7 +179,7 @@ function App() {
   return (
     <div className="App">
       {soundboards.map((x) => (
-        <Soundboard key={x.id} soundboardData={x} />
+        <Soundboard key={x.id} id={x.id} name={x.name}/>
       ))}
     </div>
   );
