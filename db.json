@@ -1,12 +1,74 @@
 {
-    "Soundboards":[
-        {"id": "1", "name": "soundboard1"}
-    ],
-    "Items":[
-        {"id": "placeholder", "name": "cat", "quote": "What does the cat say?", "icon": "faCat", "sound": "/Sounds/Cat.wav", "soundboardId": "1" },
-        {"id": "placeholder", "name": "dog", "quote": "What does the dog say?", "icon": "faDog", "sound": "/Sounds/Dog.wav", "soundboardId": "1" },
-        {"id": "placeholder", "name": "frog", "quote": "What does the frog say?", "icon": "faFrog", "sound": "/Sounds/Frog.wav", "soundboardId": "1" },
-        {"id": "placeholder", "name": "dragon", "quote": "What does the dragon say?", "icon": "faDragon", "sound": "/Sounds/Dragon.wav", "soundboardId": "1" },
-        {"id": "placeholder", "name": "fish", "quote": "What does the fish say?", "icon": "faFishFins", "sound": "/Sounds/Fish.wav", "soundboardId": "1" }
-    ]
+  "Soundboards": [
+    {
+      "id": "1",
+      "name": "soundboard1"
+    }
+  ],
+  "Items": [
+    {
+      "id": "001",
+      "name": "cat",
+      "quote": "What does the cat say?",
+      "icon": "faCat",
+      "sound": "/Sounds/Cat.wav",
+      "soundboardId": "1"
+    },
+    {
+      "id": "002",
+      "name": "dog",
+      "quote": "What does the dog say?",
+      "icon": "faDog",
+      "sound": "/Sounds/Dog.wav",
+      "soundboardId": "1"
+    },
+    {
+      "id": "003",
+      "name": "frog",
+      "quote": "What does the frog say?",
+      "icon": "faFrog",
+      "sound": "/Sounds/Frog.wav",
+      "soundboardId": "1"
+    },
+    {
+      "id": "004",
+      "name": "dragon",
+      "quote": "What does the dragon say?",
+      "icon": "faDragon",
+      "sound": "/Sounds/Dragon.wav",
+      "soundboardId": "1"
+    },
+    {
+      "id": "005",
+      "name": "fish",
+      "quote": "What does the fish say?",
+      "icon": "faFishFins",
+      "sound": "/Sounds/Fish.wav",
+      "soundboardId": "1"
+    },
+    {
+      "name": "Cow",
+      "quote": "What does the  Cow say",
+      "icon": "faCow",
+      "sound": "/Sounds/Cow.wav",
+      "soundboardId": "1",
+      "id": "hflACnk"
+    },
+    {
+      "name": "Spider",
+      "quote": "What does the  Spider say",
+      "icon": "faSpider",
+      "sound": "/Sounds/Spider.wav",
+      "soundboardId": "1",
+      "id": "skk18jZ"
+    },
+    {
+      "name": "Crow",
+      "quote": "What does the  Crow say",
+      "icon": "faCrow",
+      "sound": "/Sounds/Crow.wav",
+      "soundboardId": "1",
+      "id": "AYRbII9"
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 .soundboard{
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -9,12 +9,19 @@
 
 }
 
-.Animal{
+.AnimalIcon{
   height: 10rem;
   color: pink;
+  padding: 2rem;
 }
 
 .playing{
-  height: 10rem;
+  scale: 110%;
   color: green;
 }
+
+p{
+  color: white;
+  font-size: 2rem;
+}
+
