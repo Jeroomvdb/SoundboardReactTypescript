@@ -28,14 +28,9 @@ interface Item {
   soundboardId: string;
 }
 
-async function addItem(selectedAnimal: string) {
-  const currentPath = window.location.pathname;
-  const match = currentPath.match(/\/boards\/(\d+)/);
-  const soundboardId = match ? match[1] : null;
-
-  if (!soundboardId) {
-    console.error("Unable to extract soundboardId from URL");
-    return;
+async function addItem(selectedAnimal: string, soundboardID:string|undefined) {
+  if(soundboardID == null){
+    return
   }
 
   return axios.post(`/items`, {
@@ -43,7 +38,7 @@ async function addItem(selectedAnimal: string) {
     quote: `What does the ${selectedAnimal} say`,
     icon: `fa${selectedAnimal}`,
     sound: `/Sounds/${selectedAnimal}.wav`,
-    soundboardId: soundboardId,
+    soundboardId: soundboardID,
   });
 }
 
@@ -62,7 +57,7 @@ export default function Soundboard() {
   } = useGetCollection(`/soundboards/${id}/items`);
 
   const handleAddItemClick = async (selectedAnimal: string) => {
-    await addItem(selectedAnimal);
+    await addItem(selectedAnimal, id);
     refetch();
   };
 

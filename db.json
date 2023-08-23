@@ -179,6 +179,14 @@
       "sound": "/Sounds/Spider.wav",
       "soundboardId": "2",
       "id": "U3I1jW2"
+    },
+    {
+      "name": "Crow",
+      "quote": "What does the Crow say",
+      "icon": "faCrow",
+      "sound": "/Sounds/Crow.wav",
+      "soundboardId": "2",
+      "id": "aTvvw5M"
     }
   ]
 }
