@@ -39,7 +39,7 @@ export default function Soundboards(){
   }
 
   return (
-    <div className="App">
+    <div className="landing">
       {soundboards.map((x) => (
         <Link key={x.id} to={`/boards/${x.id}`}> 
           <Card sx={{ maxWidth: 345 }}>
